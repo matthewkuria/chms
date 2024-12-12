@@ -37,7 +37,7 @@ const  Page = () => {
       });
      
       if (!response.ok) {
-        throw new Error('Failed to fetch user profile.');
+        throw new Error('Failed to fetch user  profile.');
       }
 
       const data = await response.json();

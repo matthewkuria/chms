@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { CalendarDateRangeIcon } from "@heroicons/react/24/solid";
 import { LocateIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/utils/api";
 import { LucideLoaderPinwheel } from "lucide-react";
+import { CalendarDateRangeIcon } from "@heroicons/react/24/outline";
 
 // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function Announcements() {

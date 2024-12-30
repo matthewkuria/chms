@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use client';
 import React, { useEffect, useState } from 'react';
 import { getAttendances,deleteAttendance } from '../../utils/api';

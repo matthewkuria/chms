@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import  {setCookie} from "@/utils/cookies"
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
@@ -59,7 +60,8 @@ export default  function Login() {
   return (
     <>      
     <div className="min-h-screen flex items-center justify-center bg-gray-100">     
-      <div className="bg-white p-8 rounded shadow-md w-96">
+        <div className="bg-white p-8 rounded shadow-md w-96">
+          <Image src="/ncmi-logo.jpg" alt="logo" width={100} height={100} className="mx-auto"/>
           <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
           {loading && <ScaleLoader
                 color="hsla(217, 90%, 48%, 1)"

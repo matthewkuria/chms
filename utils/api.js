@@ -1,6 +1,6 @@
 import { getCookie } from './cookies';
 
-const API_URL = 'http://localhost:8000/api'; // Update with your Django API URL
+const API_URL = 'https://chms-backend.onrender.com/api'; // Update with your Django API URL
 
 // Function to get headers with the access token from cookies
 const getHeaders = () => {
@@ -174,7 +174,7 @@ export const getMemberDetails = async () => {
 export const updateMemberDetails = async (memberData) => {
   const token = getCookie('access_token'); // Get the token from cookies
 
-  const response = await fetch('http://localhost:8000/api/members/member-detail/', {
+  const response = await fetch('https://chms-backend.onrender.com/api/members/member-detail/', {
     method: 'PUT', // Use PUT method to update
     headers: {
       'Content-Type': 'application/json',

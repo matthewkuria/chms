@@ -4,8 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import  {setCookie} from "@/utils/cookies"
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { ToastProvider} from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
-export default  function Login() {
+export default function Login() {
+  const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -36,6 +39,11 @@ export default  function Login() {
     if (response.ok) {
       setLoading(false)
       setSuccess("Successful!")
+      toast({
+        variant: "success",
+        title: "Login Successful",
+        description: "Welcome to NCCI dashboard",
+      });
       // Store tokens in cookies
       setCookie('access_token', data.access, { expires: 1, secure: true, sameSite: 'Strict' });
       setCookie('refresh_token', data.refresh, { expires: 7, secure: true, sameSite: 'Strict' });
@@ -43,10 +51,12 @@ export default  function Login() {
       // // alert(token)
       // Redirect based on user role
       window.location.href = data.redirect_url; // Redirect to the appropriate dashboard
-    } else {
-      
-      console.error('Login failed:', data.error);
-      alert(data.error || 'Login failed'); // Show error message to the user
+    } else {      
+       toast({
+        variant: "destructive",
+        title: "Login failed",
+        description: data.error,
+      });
       setLoading(false)
       setError(data.error)
     }
@@ -58,7 +68,7 @@ export default  function Login() {
   
 
   return (
-    <>      
+     <ToastProvider>     
     <div className="min-h-screen flex items-center justify-center bg-gray-100">     
         <div className="bg-white p-8 rounded shadow-md w-96">
           <Image src="/ncmi-logo.jpg" alt="NCCI-logo" width={200} height={200} className="mx-auto"/>
@@ -111,6 +121,6 @@ export default  function Login() {
         </form>
       </div>
     </div>
-    </>
+    </ToastProvider>
   );
 }

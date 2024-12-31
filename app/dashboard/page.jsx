@@ -3,7 +3,6 @@
 import Cookies from 'js-cookie';
 import React, { useEffect } from "react";
 import { PowerIcon } from '@heroicons/react/24/outline';
-import { useRouter } from "next/navigation"
 import { Suspense, useState } from "react"
 import Link from "next/link";
 import Image from "next/image";
@@ -12,10 +11,12 @@ import defaultAvatar from "../public/defaultuser.png"
 import GreetingsComponent from "../ui/dashboard/home/greetings";
 import DashboardStatistics from "../ui/dashboard/home/statistics";
 import Charts from "../ui/dashboard/home/charts";
+import { ToastProvider} from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 
 const Page = () => {
-
+  const { toast } = useToast();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [isShown, setIshown] = useState(false)
@@ -41,11 +42,14 @@ const Page = () => {
       }
 
       const data = await response.json();
-
       setUserProfile(data);
       setProfileImage(`${process.env.NEXT_PUBLIC_API_IMG}${data.member.profile_image}`);
       console.log(data)
-      
+       toast({
+        variant: "destructive",
+        title: "Failed to fetch user data",
+        description: "Try again later",
+      });
     } catch (err) {
       console.error(err);
       setError('Failed to load profile data.');
@@ -67,7 +71,7 @@ const Page = () => {
  
   return (
     
-    <>
+    <ToastProvider>
       <div className="flex relative justify-end text-xs">
         <div  className="">
           <h1 className="font-bold text-blue-900">{userProfile.member? userProfile.member.full_name:"New Admin(Non-Member)"}</h1>
@@ -117,7 +121,7 @@ const Page = () => {
            </div>
            </Suspense>
       </main>
-      </>
+    </ToastProvider>
     )
 }
 export default Page;

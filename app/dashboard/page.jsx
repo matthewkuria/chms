@@ -51,7 +51,11 @@ const Page = () => {
       console.log(data)
       
     } catch (err) {
-      console.error(err);
+       toast({
+          variant: "destructive",
+          title: "Failed to fetch user data",
+          description: "The logged in User is Non-Member"
+        });
       setError('Failed to load profile data.');
     } finally {
       setLoading(false);
@@ -77,7 +81,7 @@ const Page = () => {
           <h1 className="font-bold text-blue-900">{userProfile.member? userProfile.member.full_name:"New Admin(Non-Member)"}</h1>
           <h5 className="text-xs font-semibold text-slate-300">{userProfile.email}</h5>
           <p className="text-xs text-blue-900">Member Number :
-            <span className='text-xl font-bold'>{userProfile.member.member_number}</span>
+            <span className='text-xl font-bold'>{userProfile.member?.member_number || "N/A"}</span>
           </p>
         </div>
         <Image src={ profile_image || defaultAvatar}

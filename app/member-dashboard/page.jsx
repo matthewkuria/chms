@@ -8,7 +8,6 @@ import { Suspense, useState } from "react"
 import Link from "next/link";
 import Image from "next/image";
 import Loading from "./loading";
-import { Button } from "@/components/ui/button";
 import defaultAvatar from "../public/defaultuser.png"
 import GreetingsComponent from "../ui/member-dashboard/home/greetings";
 import DashboardStatistics from "../ui/member-dashboard/home/statistics";
@@ -76,11 +75,11 @@ const  Page = () => {
           <p className="font-bold text-red-500 animate-pulse">{userProfile.member ? "": "Click on My details"}</p>
           {userProfile.member &&
           <p className="text-xs text-blue-900">Member Number :
-            <span className='text-xl font-bold'>{userProfile.member?.member_number}</span>
+            <span className='text-xl font-bold'>{userProfile.member?.member_number || "N/A"}</span>
           </p>}
         </div>
         <Image src={ profile_image || defaultAvatar}
-          alt="NCMI User Avatar"
+          alt="profile pic"
           width={60} height={60}
           className="w-16 h-16 rounded-full object-cover border"
           onClick={handleClick}

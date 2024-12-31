@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { PropagateLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -167,7 +168,10 @@ export default function ProfileSettings() {
       )}
       {loading ? (
         <div className="text-center">
-          <p>Loading...</p>
+          <PropagateLoader
+            color="#1443fb"
+            speedMultiplier={2}
+          />
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

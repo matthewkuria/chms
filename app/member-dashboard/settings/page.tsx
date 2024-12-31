@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ToastProvider} from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
+import { PropagateLoader } from "react-spinners";
 
 type Person = {
   full_name: string;
@@ -183,8 +184,11 @@ export default function ProfileSettings() {
         <div className="text-red-500 text-center mb-4">{error}</div>
       )}
       {loading ? (
-        <div className="text-center">
-          <p>Loading...</p>
+        <div className="text-center">          
+          <PropagateLoader
+            color="#1443fb"
+            speedMultiplier={2}
+          />
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

@@ -22,7 +22,7 @@ export default function SideNav() {
           }}>          
         </form>        
       </div>
-      <div className="flex flex-col ">
+      <div className="hidden md:flex flex-col ">
         <Link className="flex flex-row grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-xs font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3"
           href="/dashboard/settings"
         >

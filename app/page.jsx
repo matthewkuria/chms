@@ -61,8 +61,11 @@ export default function Login() {
       setError(data.error)
     }
   } catch (error) {
-    console.error('Error during login:', error);
-    alert('Error during login. Please try again.'); // Handle network or other errors
+     toast({
+        variant: "destructive",
+        title: "Error during login",
+        description: error,
+      });
   }
   };
   

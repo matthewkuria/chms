@@ -11,9 +11,12 @@ import Loading from "./loading";
 import defaultAvatar from "../public/defaultuser.png"
 import GreetingsComponent from "../ui/member-dashboard/home/greetings";
 import DashboardStatistics from "../ui/member-dashboard/home/statistics";
+import { ToastProvider} from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 
-const  Page = () => {
+const Page = () => {
+  const { toast } = useToast();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [isShown, setIshown] = useState(false)
@@ -46,7 +49,11 @@ const  Page = () => {
       console.log(data)
       
     } catch (err) {
-      console.error(err);
+       toast({
+          variant: "destructive",
+          title: "You are a new member",
+          description: "Click my details to be a member"
+        });
       setError('Failed to load profile data.');
     } finally {
       setLoading(false);
@@ -59,15 +66,11 @@ const  Page = () => {
   if (loading) {
     return <Loading />;
   } 
-   
-   
   function handleClick() {
      setIshown(prevState => !prevState)
   }
- 
   return (
-    
-    <>
+    <ToastProvider>
       <div className="flex relative justify-end text-xs">
         <div  className="">
           <h1 className="font-bold text-blue-900">{userProfile.member? userProfile.member.full_name:"New Member"}</h1>
@@ -113,7 +116,6 @@ const  Page = () => {
         </div>
        }
       </div> 
-     
         <main className="bg-slate-100">
            <Suspense fallback={<Loading />}>
             <GreetingsComponent />
@@ -122,7 +124,7 @@ const  Page = () => {
            </div>
            </Suspense>
       </main>
-      </>
+      </ToastProvider>
     )
 }
 export default Page;

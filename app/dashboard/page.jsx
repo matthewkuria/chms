@@ -21,7 +21,6 @@ const Page = () => {
   const [isShown, setIshown] = useState(false)
   const [userProfile, setUserProfile] = useState();
   const [profile_image, setProfileImage] = useState(null);
-  const router = useRouter();
 
   useEffect(() => {
   const fetchUserProfile = async () => {

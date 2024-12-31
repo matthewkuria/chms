@@ -38,18 +38,18 @@ const Page = () => {
       });
      
       if (!response.ok) {
-        throw new Error('Failed to fetch user profile.');
+         toast({
+          variant: "destructive",
+          title: "Failed to fetch user data",
+          description: "Try again later",
+        });
       }
 
       const data = await response.json();
       setUserProfile(data);
       setProfileImage(`${process.env.NEXT_PUBLIC_API_IMG}${data.member.profile_image}`);
       console.log(data)
-       toast({
-        variant: "destructive",
-        title: "Failed to fetch user data",
-        description: "Try again later",
-      });
+      
     } catch (err) {
       console.error(err);
       setError('Failed to load profile data.');

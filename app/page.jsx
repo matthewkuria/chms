@@ -119,7 +119,7 @@ export default function Login() {
             Login
           </button>
             <div className='mt-4 flex justify-end'>
-            <Link href="signup" className="">No, account?<span className='text-blue-900 font-semibold hover:underline border-2 border-slate-200 px-1'>Join Now</span></Link>
+            <Link href="signup" className="">Not a member?<span className='text-blue-900 font-semibold hover:underline border-2 border-slate-200 px-1'>Join Now</span></Link>
           </div>
         </form>
       </div>

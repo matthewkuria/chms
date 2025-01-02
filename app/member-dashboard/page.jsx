@@ -23,6 +23,7 @@ const Page = () => {
   const [profile_image, setProfileImage] = useState(null);
   const router = useRouter();
 
+  
   useEffect(() => {
   const fetchUserProfile = async () => {
     const token = Cookies.get('access_token');

@@ -22,13 +22,12 @@ const Page = () => {
   const [userProfile, setUserProfile] = useState();
   const [profile_image, setProfileImage] = useState(null);
   const router = useRouter();
-  const { user } = useAuth();
 
   
   useEffect(() => {
   const fetchUserProfile = async () => {
     const token = Cookies.get('access_token');
-    if (!user) { 
+    if (!token) { 
       router.push('/');
       return;
     }

@@ -13,6 +13,7 @@ import GreetingsComponent from "../ui/member-dashboard/home/greetings";
 import DashboardStatistics from "../ui/member-dashboard/home/statistics";
 import { ToastProvider} from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/context/AuthContext";
 
 
 const Page = () => {

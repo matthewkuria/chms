@@ -19,7 +19,7 @@ const MemberDetails =  () => {
     const token = Cookies.get('access_token');
     if (!token) {
       // Redirect to login if there is no access token
-      router.push('/login');
+      router.push('/');
     } else {
      // Decode token or make API call to verify role
   fetch(`${process.env.NEXT_PUBLIC_API_URL}/accounts/user-profile/`, {

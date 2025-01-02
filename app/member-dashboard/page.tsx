@@ -13,9 +13,7 @@ import GreetingsComponent from "../ui/member-dashboard/home/greetings";
 import DashboardStatistics from "../ui/member-dashboard/home/statistics";
 import { ToastProvider} from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/context/AuthContext";
-
-
+import { useAuth } from "@/app/context/AuthContext";
 const Page = () => {
   const { toast } = useToast();
   const [error, setError] = useState('');
@@ -24,12 +22,11 @@ const Page = () => {
   const [userProfile, setUserProfile] = useState();
   const [profile_image, setProfileImage] = useState(null);
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
   const fetchUserProfile = async () => {
     const token = Cookies.get('access_token');
-    if (!isAuthenticated) { 
+    if (!token) { 
       router.push('/');
       return;
     }
@@ -134,3 +131,5 @@ const Page = () => {
     )
 }
 export default Page;
+
+

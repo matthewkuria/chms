@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getEvents } from "@/utils/api";
 import { LucideLoaderPinwheel } from "lucide-react";
 import { CalendarDateRangeIcon } from "@heroicons/react/24/outline";
+import { PropagateLoader } from "react-spinners";
 
 // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function Announcements() {
@@ -34,7 +35,11 @@ export default function Announcements() {
         <article className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {errorMessage && <div className="error">{errorMessage}</div>}
             {events.length == 0 ? 
-                <p className="">No Upcoming events at the moment</p>
+                <PropagateLoader
+                    color="#121ded"
+                    size={15}
+                    speedMultiplier={1.2}
+                    />
                 :
                 <>
                     {events.map(event => (

@@ -58,7 +58,7 @@ export default function AddMemberForm() {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/api/members/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/members/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

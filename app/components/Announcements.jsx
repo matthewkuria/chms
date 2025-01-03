@@ -34,7 +34,7 @@ export default function Announcements() {
     return (
         <article className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {errorMessage && <div className="error">{errorMessage}</div>}
-            {events.length == 0 ? 
+            {events?.length == 0 ? 
                 <PropagateLoader
                     color="#121ded"
                     size={15}
@@ -42,7 +42,7 @@ export default function Announcements() {
                     />
                 :
                 <>
-                    {events.map(event => (
+                    {events?.map(event => (
                         <Card key={event.id}>
                             {event.event_image &&
                                 <div className="max-h-48 overflow-hidden rounded-lg">

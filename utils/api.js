@@ -1,6 +1,6 @@
 import { getCookie } from './cookies';
 
-const API_URL = 'https://chms-backend.onrender.com/api'; // Update with your Django API URL
+const API_URL = 'https://chms.ncmi-ke.org/admin/api'; // Update with your Django API URL
 
 // Function to get headers with the access token from cookies
 const getHeaders = () => {

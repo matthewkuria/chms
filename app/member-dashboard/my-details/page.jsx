@@ -65,12 +65,10 @@ const MyDetailsPage = () => {
   const handleUpdate = () => {
     fetchMembers();   
   };
-
-
     return (
         <article className='grid  gap-4 p-4'>
             <div className="flex flex-col space-y-4">
-                <h1 className='text-2xl text-blue-900 font-bold underline'>My Details</h1>
+                <h1 className='text-2xl text-blue-700 font-bold'>My Details</h1>
                 {member.map((member) => ( 
             <div key={member.id} className="bg-white p-4 rounded shadow-md">
             <div>

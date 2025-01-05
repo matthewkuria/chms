@@ -68,47 +68,53 @@ const MyDetailsPage = () => {
 
 
     return (
-        <article className='grid grid-cols-2 gap-4 p-4'>
-            
+        <article className='grid  gap-4 p-4'>
             <div className="flex flex-col space-y-4">
                 <h1 className='text-2xl text-blue-900 font-bold underline'>My Details</h1>
-             <div>
-                <strong>Number:</strong> {member.member_number}
+                {member.map((member) => ( 
+            <div key={member.id} className="bg-white p-4 rounded shadow-md">
+            <div>
+                <strong>Number:</strong> {member.member_number || "N/A"}
             </div>
             <div>
-                <strong>Name:</strong> {member.full_name}
+                <strong>Name:</strong> {member.full_name || "N/A"}
             </div>
             <div>
-                <strong>Membership:</strong> {member.membership}
+                <strong>Membership:</strong> {member.membership || "N/A"}
             </div>
             <div>
-                <strong>Email:</strong> {member.email}
+                <strong>Gender:</strong> {member.gender  || "N/A"}
             </div>
             <div>
-                <strong>Phone:</strong> {member.mobile}
+                <strong>Phone:</strong> {member.mobile  || "N/A"}
             </div>
             <div>
-                <strong>D.O.B:</strong> {member.dob}
+                <strong>D.O.B:</strong> {member.dob  || "N/A"}
             </div>
             <div>
-                <strong>Address:</strong> {member.address}
+                <strong>Marrital Status:</strong> {member.marital_status || "N/A"}
             </div>
             <div>
-                <strong>Residence:</strong> {member.residence}  
+                <strong>Address:</strong> {member.postal_address ||"N/A"}
             </div>
             <div>
-                <strong>Postal Address:</strong> {member.postal_address}
+                <strong>Residence:</strong> {member.residence || "N/A"}  
             </div>
             <div>
-                <strong>Date Joined:</strong> {member.date_joined}
+                <strong>Postal Address:</strong> {member.postal_address || "N/A"}
             </div>
             <div>
-                <strong>Date Left:</strong> {member.date_left}
+                <strong>Date Joined:</strong> {member.date_joined   || "N/A"}
             </div>
+            <div>
+                <strong>Date Left:</strong> {member.date_left   || "N/A"}
             </div>
             <div className="flex flex-col items-center text-xs">
                 <EditMyDetailsDialog member={member} memberId={member.id} onUpdate={handleUpdate} />
                 <p className="">Edit</p>
+            </div>
+            </div> 
+                ))}
             </div>
         </article>
     );

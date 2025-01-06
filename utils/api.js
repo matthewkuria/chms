@@ -1,6 +1,6 @@
 import { getCookie } from './cookies';
 
-const API_URL = 'https://chms.ncmi-ke.org/api'; // Update with your Django API URL
+const API_URL = 'http://127.0.0.1:8000/api'; // Update with your Django API URL
 
 // Function to get headers with the access token from cookies
 const getHeaders = () => {
@@ -38,13 +38,15 @@ export const updateMember = async (memberId, memberData) => {
   return response.json();
 };
 
-export const deleteMember = async (memberId) => {
-  const response = await fetch(`${API_URL}/members/${memberId}/`, {
+export const deleteMember = async (id) => {
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/members/${id}/`, {
     method: 'DELETE',
-    headers: getHeaders(),
+    headers: {
+      Authorization: `Bearer ${getCookie('access_token')}`,
+    },
   });
-  return response.json();
 };
+
 
 // Attendance API
 export const createAttendance = async (attendanceData) => {

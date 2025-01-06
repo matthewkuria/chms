@@ -101,7 +101,6 @@ const handlePrevPage = () => {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
-                // Add other headers if needed, e.g., Authorization
               },
             });
           })
@@ -119,16 +118,29 @@ const handlePrevPage = () => {
   
 // Delete a member
   const handleDelete = async (id) => {
-    const d_status = confirm("Are you sure you want to delete?")
-    if (d_status) {
-      try {      
-      await deleteMember(id);
-      setMembers(members.filter((member) => member.id !== id)); // Remove member from state
-    } catch (error) {
-      setError('Failed to delete member.');
+  const confirmed = confirm("Are you sure you want to delete?");
+  if (!confirmed) return;
+
+  try {
+    const response = await deleteMember(id);
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        setErrorMessage('The member does not exist or has already been deleted.');
+      } else {
+        setErrorMessage('An error occurred while deleting the member. Please try again.');
+      }
+      return;
     }
-    }
-  }; 
+
+    setAllMembers((prev) => prev.filter((member) => member.id !== id));
+    setErrorMessage(null); // Clear error message if successful
+  } catch (err) {
+    console.error('Error deleting member:', err);
+    setErrorMessage('Failed to delete the member. Please check your network connection and try again.');
+  }
+};
+
   
   
  // Handle checkbox change
@@ -192,7 +204,6 @@ const handlePrevPage = () => {
 
   // Adjust the column widths (with the fixed function)
   setColumnWidths(ws, data);
-
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'SelectedMembers');
   XLSX.writeFile(wb, 'selected_members.xlsx');
@@ -217,10 +228,7 @@ const setColumnWidths = (ws, data) => {
   speedMultiplier={5}
 />;
   }
-  // If there’s an error, show the error message
-  if (errorMessage) {
-    return <p>{error}</p>;
-  }
+  
   
   return (
     <div className="overflow-x-auto text-xs">

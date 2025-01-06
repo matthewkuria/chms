@@ -1,3 +1,4 @@
+"use client";
 import GroupTable from "../../components/GroupTable"
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';

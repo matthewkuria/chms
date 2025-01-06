@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';  
 import EventsTable from "../../components/EventsTable"

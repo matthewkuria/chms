@@ -26,6 +26,10 @@ const Page = () => {
   useEffect(() => {
   const fetchUserProfile = async () => {
     const token = Cookies.get('access_token');
+    if (!token) { 
+      router.push('/');
+      return;
+    }
     setLoading(true);
 
     try {

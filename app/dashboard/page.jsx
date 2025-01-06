@@ -13,9 +13,11 @@ import DashboardStatistics from "../ui/dashboard/home/statistics";
 import Charts from "../ui/dashboard/home/charts";
 import { ToastProvider} from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 
 const Page = () => {
+  const router = useRouter();
   const { toast } = useToast();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);

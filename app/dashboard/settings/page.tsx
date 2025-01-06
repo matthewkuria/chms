@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"
 import Cookies from "js-cookie";
 import { PropagateLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
@@ -25,6 +26,7 @@ type Person = {
 };
 
 export default function ProfileSettings() {
+  const router = useRouter();
   const [member, setMember] = useState<Person>({
     full_name: "",
     member_number: 0,
@@ -57,7 +59,11 @@ export default function ProfileSettings() {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      const token = Cookies.get("access_token");
+       const token = Cookies.get('access_token');
+        if (!token) { 
+          router.push('/');
+          return;
+        }
       setLoading(true);
 
       try {

@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { LocateIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/utils/api";
 import { LucideLoaderPinwheel } from "lucide-react";
-import { CalendarDateRangeIcon } from "@heroicons/react/24/outline";
 import { PropagateLoader } from "react-spinners";
+import locationIcon  from "../public/locationIcon.png";
+import calendarIcon  from "../public/calendarIcon.png";
+
 
 // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export default function Announcements() {
@@ -43,7 +44,7 @@ export default function Announcements() {
                 :
                 <>
                     {events?.map(event => (
-                        <Card key={event.id}>
+                        <Card key={event.id} className="relative">
                             {event.event_image &&
                                 <div className="max-h-48 overflow-hidden rounded-lg">
                                     <Image src={event.event_image} alt="The event image" width={400} height={300} className="object-fill"/>
@@ -55,15 +56,15 @@ export default function Announcements() {
                             <CardContent className="max-h-40 overflow-y-scroll">
                                 <p className="text-slate-600 text-[13px]">{event.description}</p>
                             </CardContent>
-                            <CardFooter className="text-blue-900 font-semibold flex-col lg:flex lg:flex-row justify-around my-3">
-                                <p className="flex gap-1">
-                                    <CalendarDateRangeIcon width={20}/>
-                                    {event.doe}
-                                </p>
-                                <p className="flex gap-2">
-                                    <LocateIcon width={20} />
-                                    {event.venue}
-                                </p>
+                            <CardFooter className="text-blue-900 text-xs">
+                                <div className="absolute top-0 right-0 flex items-center font-bold bg-white p-1 rounded-s">
+                                    <Image src={calendarIcon} alt="calendar icon" width={30} height={30} />
+                                    <p className="">{event.doe}</p>
+                                </div>
+                                <div className="flex gap-2 items-center font-semibold">
+                                    <Image src={locationIcon} alt="location icon" width={20} height={20} />
+                                    <p className="">{event.venue}</p>
+                                </div>
                             </CardFooter>            
                         </Card>
                     ))}
